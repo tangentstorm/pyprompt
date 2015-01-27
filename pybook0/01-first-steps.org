@@ -1,0 +1,62 @@
+#+title: Beginning Python Programming
+
+* First Steps
+
+: print("Hello, World!")
+
+Convincing the computer to put the words =Hello, World= on the screen is the traditional first step when learning a new programming language, and the line above is the code to accomplish this task in python.
+
+Getting this program to run provides evidence that your tools are set up correctly, that you're able to invoke them, and that you're able to observe the output.
+
+In order to run this program, you need to install python, type it into a plain text file named =hello.py=, open a command shell, and then type:
+
+: python hello.py
+
+These instructions are explained in detail in appendix /A: Installing Python/, and appendix /B: Running Python Programs/. If any of these steps are new to you, and you should familiarize yourself with these sections before continuing.
+
+Once you're ready, try running the program. If all goes well, python should emit the phrase =Hello, World!= on a line by itself, and then exit, returning you to the shell.
+
+If things /don't/ go well, then carefully review the steps in appendices /A/ and /B/, to diagnose the problem. If you're still stuck, consult appendix /C: Where to Find Help/.
+
+Even if you got =hello.py= to run, there's one more thing you should check, and that's to make sure you're running some version of python 3, rather than python 2.
+
+* The two Pythons
+
+Python 3.0 was released December 3, 2008. This version contained a variety of backwards-incompatible changes in the language, introducing new syntax, removing obsolete libraries, and completely changing the low-level interface used to create native code extensions.
+
+Unfortunately, the python development community has been somewhat slow to adapt, and as of 2015, despite the avaliability of tools to help migrate code between the versions, there are still a number of old projects and tools that are incompatible with python 3, and of course there are newer projects that are incompatible with python 2.
+
+In this book, we'll stick with python 3. If you find yourself needing to work with legacy python code at some point, it shouldn't be too hard to make the mental adjustments.
+
+To test your version of python, you can run:
+
+: python --version
+
+On the computer I'm using to write this book, it responds:
+
+: Python 3.4.2
+
+If your version of python is newer, you shouldn't need to change anything to run the code in this book, but if you're running an older version, you should definitely upgrade.
+
+In particular, one of the major changes introduced with version 3 has to do with printing more than one value at a time:
+
+: print(1,2,3)
+
+In python 3, this prints:
+
+: 1 2 3
+
+But in python 2, it will print:
+
+: (1, 2, 3)
+
+The old behavior will make more sense once you learn about tuples, but for now, don't worry about. Just make sure you're running python 3.
+
+
+
+
+* Referenced future sections
+** Glossary
+** Appendix A: Installing Python
+** Appendix B: Running Python Programs
+** Appendix C: Where to Find Help
