@@ -1,0 +1,136 @@
+
+
+* TODO running the prompt
+
+* Exploring the Python Shell.
+
+** TODO Inspecting the environment (dir(), help())
+** TODO Assigning and inspecting variables.
+
+* Calculations
+** Arithmetic Expressions
+
+The python shell makes a pretty decent calculator replacement. In fact, you might want to leave the python shell open while you work on other tasks just so you get in the habit of using it.
+
+Here's what a simple calculation looks like in python:
+
+#+begin_example
+>>> 1 + 2 * 3 + 4 * 5
+27
+#+end_example
+
+Python uses the standard order of operations taught in schools. The acronym "PEMDAS" can help you remember. It stands for /Parentheses/, /Exponents/, /Multiplication/, /Division/, /Addition/, /Subtraction/.
+
+In the example above, there are no parentheses or exponents, but the =*= symbol represents multiplication, and it appears twice. So these multiplications are performed first, starting on the left.
+
+Here's a trace showing what python does internally to evaluate the expression. (Each line is the result of evaluating the line before.)
+
+: 1 + (2 * 3) + 4 * 5
+: 1 + 6 + (4 * 5)
+: (1 + 6) + 20
+: (7 + 20)
+: 27
+
+All of the main operations of arithmetic are available directly in the python syntax:
+
+| operation               | symbol | example  | result |
+|-------------------------+--------+----------+--------|
+| addition                | +      | 2 + 2    |      4 |
+| subtraction             | -      | 5 - 3    |      2 |
+| multiplication          | *      | 3 * 5    |     15 |
+| floating point division | /      | 7 // 2   |    3.5 |
+| integer division        | //     | 7 // 2   |      3 |
+| modulo (remainder)      | %      | 7 % 2    |      2 |
+| exponent                | **     | 2**3     |      8 |
+| roots                   | **     | 8**(1/3) |    2.0 |
+
+For example, say you need to find the distance between two points. You can just type the formula at the prompt:
+
+#+begin_example
+>>> x1,y1 = 2,3 ; x2,y2 = 5,10
+>>> ((x1-x2)**2 + (y1-y2)**2)**.5
+7.615773105863909
+#+end_example
+
+** Dealing with Division
+
+Notice that the result of =7/2= is =3.5= whereas the result of =7//2= is =3=. This is so you can get the quotion (the integer part of the division). To get the remainder, you would type =7%2=.
+
+If you want both at once, you can use the built-in function =divmod=:
+
+#+begin_example
+>>> 7 // 2
+3
+>>> 7 * 3
+1
+>>> divmod(7,3)
+(2, 1)
+>>> (2 * 3)+1
+7
+#+end_example
+
+Floating point math is very fast on modern hardware, but it is imprecise due to rounding, For example:
+
+#+begin_example
+>>> 2/3
+0.6666666666666666
+>>> 10**8 * 2/3
+66666666.666666664
+#+end_example
+
+Notice how a four has crept into what should be an infinite series of sixes. These minor inaccuracies may or may not be a problem, depending on the type of work you're doing.
+
+If you prefer to work with rational numbers, you use the =Fraction= module:
+
+#+begin_example
+from fractions import Fraction
+>> Fraction(2,3)
+Fraction(4, 3)
+#+end_example
+
+Here we've multiplied the fraction "two over three" by two, to giving us "four over three".
+
+Likewise, "two over three" times three gives us "two over one."
+
+#+begin_example
+>>> 3 * Fraction(2,3)
+Fraction(2, 1)
+#+end_example
+
+Obviously, that's just two, but python keeps the result wrapped inside a =Fraction= object so that it continues to work as a fraction if you do more calculations.
+
+Converting the =Fraction= to a string value gives a somewhat prettier result.
+
+#+begin_example
+>>> str(Fraction(2,3))
+'2/3'
+>>> str(3 * Fraction(2,3))
+'2'
+#+end_example
+
+
+In addition to =Fraction=, there is a =Decimal= class, which works in much the same way:
+
+#+begin_example
+>>> Decimal(5)/2
+Decimal('2.5')
+#+end_example
+
+One last point about division: recall that division by zero is undefined in mathematics. Python will complain loudly if you try:
+
+#+begin_example
+>>> 1/0
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ZeroDivisionError: division by zero
+#+end_example
+
+
+* TODO Comparisons and Conditionals
+* TODO Conditional Expressions.
+* TODO Overview of the built-in functions. (maybe the top 20)
+* TODO String manipulation and formatting.
+* TODO Basic data types: sets, lists, dicts, tuples
+* TODO Sequences and comprehensions.
+* TODO Recognizing and resolving error messages, warnings, tracebacks.
+* TODO Simple lambda expressions.
