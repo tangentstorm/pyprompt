@@ -1,14 +1,127 @@
+#+title: Solving Problems Interactively
 
-
-* TODO running the prompt
 
 * Exploring the Python Shell.
 
-** TODO Inspecting the environment (dir(), help())
-** TODO Assigning and inspecting variables.
+** TODO running the prompt
 
-* Calculations
-** Arithmetic Expressions
+
+** The =>>>= prompt
+multi-line input
+
+>>> (2 +
+... 2)
+4
+
+** TODO Inspecting the environment
+- dir()
+- help()
+** TODO Assigning and inspecting variables.
+** clear the screen with ^L
+** quit with ^D or exit()
+** extended shells
+*** ipython notebooks
+*** bpython
+
+* Some Quick Examples.
+
+Here's a quick overview of some things you can build at the prompt.
+
+** simple values
+*** numbers
+: >>> 2**128
+: 340282366920938463463374607431768211456
+
+*** strings
+: >>> "hello, " 'world'
+: 'hello, world'
+
+*** =True=, =False=, =None=
+
+** variables
+: >>> x = 5
+: >>> x
+: 5
+
+** containers
+*** tuples
+: >>> (1, 23, 'abc')
+: (1, 23, 'abc')
+
+*** lists
+: >>> [1, 2, 3, 4]
+: [1, 2, 3, 4]
+
+*** sets
+: >>> x={ 123, 'apples', 4 }; y={ 'hello', 123 }
+: >>> x | y
+: {'hello', 123, 4, 'apples'}
+
+*** dicts
+: >>> {'a':'apple', 'b':'banana'}
+: {'b': 'banana', 'a': 'apple'}
+
+** functions and methods
+: >>> list(zip('abc',range(3)))
+: [('a', 0), ('b', 1), ('c', 2)]
+
+: >>> isinstance(5,int), isinstance('abc',int)
+: (True, False)
+
+** conditional expressions
+: >>> 53 if 'A'.isupper() else 42
+: 53
+
+** generators and comprehensions
+: >>> [2**x for x in range(10)]
+: [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
+
+** files
+: >>> open('file.txt','w').write('save me!')
+: 8
+
+: >>> open('file.txt').read()
+: 'save me!'
+
+: >>> import os; [f for f in os.listdir('.') if f.endswith('.txt')]
+: ['file.txt']
+
+** other objects
+
+* Variables
+
+To create a variable, just use an assignment statement:
+
+: >>> x = 5
+
+To see the value of a variable, type its name:
+
+: >>> x
+
+x
+
+If you type =dir()= now, you'll see that 'x' has appeared in the list.
+
+: >>> dir()
+: ['__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__spec__', 'x']
+
+
+
+
+: >>> x
+
+
+
+: >>> x + 1
+: 6
+
+
+
+: >>> x=1; y=x+1; x+y
+: 3
+
+* Numbers
+** Arithmetic
 
 The python shell makes a pretty decent calculator replacement. In fact, you might want to leave the python shell open while you work on other tasks just so you get in the habit of using it.
 
@@ -125,12 +238,206 @@ Traceback (most recent call last):
 ZeroDivisionError: division by zero
 #+end_example
 
+** TODO Complex Numbers
+You can type imaginary numbers directly, and add them to real numbers to create complex ones:
+
+>>> 99j
+99j
+
+>>> 1 + 2j
+(1+2j)
+
+Note that this is just a normal addition, so if you want to multiply the complex number, you need to write it with parentheses:
+
+>>> 3 * 1 + 2j   # multiplies (3*1) and then adds 2j
+(3+2j)
+>>> 3 * (1 + 2j)
+(3+6j)
+
+
+* TODO Strings
+** dir('')
+*** help(''.casefold())
+** =len(s)=
+** subscripts and slices
+
+>>> 'cat'[1:]
+'at'
+
+We'll talk more about these in the slices
+
+** building strings
+*** using %
+*** using =.format=
+** breaking strings into pieces
+- =split()=
+- =partition=
+- =splitlines=
+** multi-line strings
+
 
 * TODO Comparisons and Conditionals
+** booleans
+| and |
+| or  |
+| not |
+| ^   |
+** bitwise operations
+
 * TODO Conditional Expressions.
-* TODO Overview of the built-in functions. (maybe the top 20)
-* TODO String manipulation and formatting.
+
+
+
+
 * TODO Basic data types: sets, lists, dicts, tuples
+** vars(): current namespace as dictionary
+
+>>> this=vars()
+>>> this['b'] = 5
+>>> b
+** dictionaries
+.keys
+.items
+.get
+.setdefault
+
+
+* TODO Overview of the built-in functions. (maybe the top 20)
+You can find the methods of any object with dir:
+>>> dir('abc')
+
+** math routines
+*** =abs= : absolute value
+
+>>> abs(1)
+1
+>>> abs(-1)
+1
+>>> abs(1+1j)  # math.sqrt(2)
+1.4142135623730951
+
+*** =complex=
+We've seen that you can create complex numbers by hand:
+
+>>> 2 + 3j
+(2+3j)
+
+
+>>> x=5;y=2; complex(x,y)
+(5+2j)
+
+*** =divmod=
+*** pow()
+*** round()
+
+** introspection and dynamic behavior
+dir() id() hash() eval() exec() isinstance() issubclass()
+callable() getattr() help()
+locals() globals() vars()
+hasattr() delattr() setattr()
+type(name, bases, dict) -> a new type
+compile() globals() __import__()
+** sequences
+*** =all=
+>>> all([x>0 for x in [2,3,5]])
+True
+
+*** =any=
+>>> any([x==0 for x in [1,2,3]])
+False
+
+*** range()
+>>> range(10)[3:]
+range(3, 10)
+
+*** enumerate()
+*** slice
+*** sorted()
+*** sum
+*** =map()= and =filter()=
+*** =iter()= and =next()=
+*** zip()
+*** len()
+*** =max=
+*** reversed()
+
+** io
+input() print open()
+** constructors / conversions
+dict object bool set(), frozenset() tuple(), list  hash()
+** TODO binary data
+*** TODO =bytes=
+*** bytearray
+>>> bytearray("(∀x⋅x→x.)",'utf-8')
+bytearray(b'(\xe2\x88\x80x\xe2\x8b\x85x\xe2\x86\x92x.)')
+
+>>> bytearray(range(10))
+bytearray(b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\t')
+*** TODO memoryview()
+
+** string representations
+*** =hex=
+*** =bin=
+*** =oct=
+*** =ascii=
+>>> print(ascii("(∀x⋅x→x.)"))
+'(\u2200x\u22c5x\u2192x.)'
+*** str
+*** ord()
+*** chr
+*** float()
+*** =format=
+*** repr()
+
+** oop
+staticmethod super() property() classmethod()
+
+** misc
+help
+slice()
+
+** unsorted
+
+
+
+
+
 * TODO Sequences and comprehensions.
+
+Comprehensions are a special syntax for building data structures from a sequence:
+
+>>> range(10)
+range(0, 10)
+>>> list(range(10))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+: >>> [x% 3 for x in range(10)]
+: [0, 1, 2, 0, 1, 2, 0, 1, 2, 0]
+
+: >>> {x%3 for x in range(10)}
+: {0, 1, 2}
+
+: >>> {x:x% 3 for x in range(10)}
+: {0: 0, 1: 1, 2: 2, 3: 0, 4: 1, 5: 2, 6: 0, 7: 1, 8: 2, 9: 0}
+
+: >>> {(x+1)% 3 for x in range(10)}
+: {0, 1, 2}
+
+
+There are no tuple comprehensions, but
+
+: >>> g=(x% 3 for x in range(10))
+: >>> next(g)
+: 0
+
 * TODO Recognizing and resolving error messages, warnings, tracebacks.
 * TODO Simple lambda expressions.
+
+
+itertools :  lots of problem solving tools
+shelve : simple persistence
+string : mostly for the constants
+random : for random numbers
+os and os.path : working with the file system
+collections : mostly for namedtuple
+
